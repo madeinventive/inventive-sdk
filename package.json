@@ -1,0 +1,58 @@
+{
+  "name": "@madeinventive/inventive-sdk",
+  "description": "SDK library for types, function calls and React components to embed Inventive content in any web app",
+  "author": "Inventive X",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "packageManager": "yarn@1.22.15",
+  "scripts": {
+    "build": "rm -rf dist && yarn gen:types && yarn copy:types && yarn build:tsc",
+    "build:tsc": "tsc -p tsconfig.build.json",
+    "gen:types": "gulp --color --gulpfile gulpfile.js build_types",
+    "copy:types": "yarn copyfiles -u 1 src/__gen__/* src/__gen__/**/* dist",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .ts --fix --max-warnings 0",
+    "fmt": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|json)\"",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "ajv-formats": "^2.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tslib": "^2.4.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@types/jest": "^29.2.4",
+    "@types/node": "^18.17.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "ajv": "^8.9.0",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.15.18",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "gulp": "^4.0.2",
+    "husky": "^8.0.0",
+    "jest": "^29.3.1",
+    "prettier": "^2.8.1",
+    "ts-jest": "^29.0.3",
+    "ts-json-schema-generator": "^0.97.0",
+    "typescript": "^4.5.4",
+    "typescript-json-schema": "^0.52.0"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madeinventive/inventive-sdk.git"
+  }
+}

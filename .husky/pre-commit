@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn lint
+yarn fmt
+
+if [[ ! -f "./src/__gen__/validators.js" ]]
+then
+  yarn build
+fi
+yarn test
