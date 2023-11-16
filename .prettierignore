@@ -1,0 +1,14 @@
+dist
+node_modules
+.cache
+*.log
+**/.DS_Store
+
+tsconfig.*.json
+
+# IDE
+.idea
+.vscode
+
+__gen__
+coverage

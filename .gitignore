@@ -1,0 +1,14 @@
+# Project exclude paths
+dist
+__gen__
+/node_modules
+/index.d.ts
+/index.js
+/index.js.map
+coverage
+
+**/.DS_Store
+
+# IDE
+.idea
+.cache
