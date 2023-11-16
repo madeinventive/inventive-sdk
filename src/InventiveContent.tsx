@@ -40,7 +40,7 @@ export const InventiveContent = (props: InventiveContentProps) => {
     };
   }, [urlInfo]);
 
-  if (!urlInfo) return <></>;
+  if (!urlInfo) return null;
   return (
     <iframe
       ref={iframeRef}

@@ -1,5 +1,5 @@
 {
-  "name": "@madeinventive/inventive-api",
+  "name": "@madeinventive/inventive-sdk",
   "description": "SDK library for types, function calls and React components to embed Inventive content in any web app",
   "author": "Inventive X",
   "version": "0.0.1",
@@ -19,7 +19,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "node-fetch": "^3.3.2",
+    "ajv-formats": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tslib": "^2.4.1"
@@ -34,7 +34,6 @@
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "ajv": "^8.9.0",
-    "ajv-formats": "^2.1.1",
     "copyfiles": "^2.4.1",
     "esbuild": "^0.15.18",
     "eslint": "^8.30.0",

@@ -1,5 +1,11 @@
 import { EmbedTokensMessage, TokensData } from './types';
 
+export const PATH_GET_AUTHORIZED_URL = '/embed/getAuthorizedUrl';
+
+export enum EndpointEnum {
+  GetAuthorizedUrl = 'GET_AUTHORIZED_URL',
+}
+
 export const getApiEndpoint = (): string | undefined => {
   // calling api from the backend is preferred, more secure
   if (process.env.INVENTIVE_API_ENDPOINT) {
@@ -30,6 +36,26 @@ export const getApiKey = (): string | undefined => {
 
 export const isEnvSetup = (): boolean => {
   return !!getApiEndpoint() && !!getApiKey();
+};
+
+export const getRESTApiEndpoint = (
+  endpoint: EndpointEnum
+): string | undefined => {
+  const apiEndpoint = getApiEndpoint();
+  if (!apiEndpoint) return;
+
+  if (endpoint === EndpointEnum.GetAuthorizedUrl)
+    return `${apiEndpoint}/embed/getAuthorizedUrl`;
+
+  return undefined;
+};
+
+export const getRESTApiHeaders = (): Record<string, string> => {
+  const apiKey = getApiKey();
+  return {
+    'Content-Type': 'application/json',
+    'INVENTIVE-API-KEY': apiKey ?? '',
+  };
 };
 
 export const createEmbedTokensMessage = (
