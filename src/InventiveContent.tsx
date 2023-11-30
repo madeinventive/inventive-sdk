@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AuthorizedUrlInfo } from './types';
 import { createEmbedTokensMessage } from './utils';
 
@@ -8,37 +8,43 @@ export interface InventiveContentProps {
 
 export const InventiveContent = (props: InventiveContentProps) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [embedContentInited, setEmbedContentInited] = useState(false);
 
   const { urlInfo } = props;
 
-  useEffect(() => {
-    // nothing to do if urlInfo is not provided
-    if (!urlInfo) return;
+  const handleEmbedContentReady = useCallback((event: MessageEvent) => {
+    // nothing to do if urlInfo is not provided or embed content is already initialized
+    if (!urlInfo || embedContentInited) return;
 
     const targetOrigin = new URL(urlInfo.url).origin;
-
-    const iframe = iframeRef.current;
-    const postMessageToIframe = () => {
-      if (iframe?.contentWindow) {
-        iframe.contentWindow.postMessage(
-          createEmbedTokensMessage(urlInfo.tokens),
-          targetOrigin,
-        );
-      }
-    };
-
-    // Add event listener to post message when iframe is loaded
-    if (iframe) {
-      iframe.addEventListener('load', postMessageToIframe);
+    if (event.origin !== targetOrigin) {
+      // ignore messages from other origins
+      return;
     }
 
+    const { type } = event.data;
+    if (type !== 'embed_content_ready') {
+      // ignore messages with other types
+      return;
+    }
+
+    const iframe = iframeRef.current;
+    if (iframe?.contentWindow) {
+      iframe.contentWindow.postMessage(
+        createEmbedTokensMessage(urlInfo.tokens),
+        targetOrigin,
+      );
+      setEmbedContentInited(true);
+    }
+  }, [embedContentInited, urlInfo]);
+
+  useEffect(() => {
+    window.addEventListener('message', handleEmbedContentReady);
     // Cleanup the event listener on component unmount
     return () => {
-      if (iframe) {
-        iframe.removeEventListener('load', postMessageToIframe);
-      }
+      window.removeEventListener('message', handleEmbedContentReady);
     };
-  }, [urlInfo]);
+  }, [handleEmbedContentReady]);
 
   if (!urlInfo) return null;
   return (
