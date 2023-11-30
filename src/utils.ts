@@ -68,11 +68,3 @@ export const createEmbedTokensMessage = (
     hostUrl,
   };
 };
-
-export const getEmbedSearchParams = (): Record<string, string> => {
-  if (typeof window !== 'undefined') {
-    const searchParams = new URL(window.location.href).searchParams;
-    return Object.fromEntries(searchParams.entries());
-  }
-  return {};
-};
