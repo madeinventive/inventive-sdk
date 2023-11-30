@@ -44,7 +44,7 @@ export const InventiveContent = (props: InventiveContentProps) => {
     return () => {
       window.removeEventListener('message', handleEmbedContentReady);
     };
-  }, []);
+  }, [handleEmbedContentReady]);
 
   if (!urlInfo) return null;
   return (
