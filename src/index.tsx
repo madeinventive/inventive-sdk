@@ -5,7 +5,7 @@ export {
   PATH_GET_AUTHORIZED_URL,
   isEnvSetup,
   getRESTApiEndpoint,
-  getRESTApiHeaders
+  getRESTApiHeaders,
 } from './utils';
 
 export * from './validatorUtils';
