@@ -6,7 +6,7 @@ export {
   isEnvSetup,
   getRESTApiEndpoint,
   getRESTApiHeaders,
-  getEmbedUrlFromURL,
+  getEmbedSearchParams,
 } from './utils';
 
 export * from './validatorUtils';

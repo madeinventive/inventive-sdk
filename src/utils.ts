@@ -60,18 +60,19 @@ export const getRESTApiHeaders = (): Record<string, string> => {
 
 export const createEmbedTokensMessage = (
   tokens?: TokensData,
-  reference?: string
+  referenceUrl?: string
 ): EmbedTokensMessage => {
   return {
     type: 'embed_tokens',
     tokens,
-    reference,
+    referenceUrl,
   };
 };
 
-export const getEmbedUrlFromURL = () => {
+export const getEmbedSearchParams = (): Record<string, string> => {
   if (typeof window !== 'undefined') {
-    return new URL(window.location.href).searchParams.get('embedUrl');
+    const searchParams = new URL(window.location.href).searchParams;
+    return Object.fromEntries(searchParams.entries());
   }
-  return undefined;
+  return {};
 };
