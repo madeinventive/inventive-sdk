@@ -2,7 +2,7 @@
   "name": "@inventive/sdk",
   "description": "SDK library for types, function calls and React components to embed Inventive content in any web app",
   "author": "Inventive X",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
