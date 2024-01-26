@@ -34,7 +34,7 @@ export const InventiveContent = ({
       const iframe = iframeRef.current;
       if (iframe?.contentWindow) {
         iframe.contentWindow.postMessage(
-          createEmbedTokensMessage(urlInfo.tokens, hostUrl),
+          createEmbedTokensMessage(urlInfo.tokens, urlInfo.scopeToken, hostUrl),
           targetOrigin
         );
         setEmbedContentInited(true);

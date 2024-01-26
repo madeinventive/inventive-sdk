@@ -60,11 +60,13 @@ export const getRESTApiHeaders = (): Record<string, string> => {
 
 export const createEmbedTokensMessage = (
   tokens?: TokensData,
+  scopeToken?: string,
   hostUrl?: string
 ): EmbedTokensMessage => {
   return {
     type: 'embed_tokens',
     tokens,
+    scopeToken,
     hostUrl,
   };
 };
