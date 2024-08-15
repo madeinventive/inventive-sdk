@@ -2,7 +2,7 @@
   "name": "@inventive/sdk",
   "description": "SDK library for types, function calls and React components to embed Inventive content in any web app",
   "author": "Inventive X",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,9 +21,11 @@
   },
   "dependencies": {
     "ajv-formats": "^2.1.1",
-    "react": "^16.8",
-    "react-dom": "^16.8",
     "tslib": "^2.4.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
@@ -44,6 +46,8 @@
     "husky": "^8.0.0",
     "jest": "^29.3.1",
     "prettier": "^2.8.1",
+    "react": "^16.8",
+    "react-dom": "^16.8",
     "ts-jest": "^29.0.3",
     "ts-json-schema-generator": "^0.97.0",
     "typescript": "^4.5.4",
