@@ -4,12 +4,10 @@ import { createEmbedTokensMessage } from './utils';
 
 export interface InventiveContentProps {
   urlInfo?: AuthorizedUrlInfo;
-  hostUrl?: string;
 }
 
 export const InventiveContent = ({
   urlInfo,
-  hostUrl,
 }: InventiveContentProps) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [embedContentInited, setEmbedContentInited] = useState(false);
@@ -34,7 +32,7 @@ export const InventiveContent = ({
       const iframe = iframeRef.current;
       if (iframe?.contentWindow) {
         iframe.contentWindow.postMessage(
-          createEmbedTokensMessage(urlInfo.tokens, urlInfo.scopeToken, hostUrl),
+          createEmbedTokensMessage(urlInfo.tokens, urlInfo.scopeToken, urlInfo.hostUrl),
           targetOrigin
         );
         setEmbedContentInited(true);
